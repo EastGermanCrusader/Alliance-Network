@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alliance Network - Star Wars RP Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            .countdown-item {
+                min-width: 100px;
+                padding: 1rem 1.5rem;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1b2a 100%);
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: starTwinkle 3s ease-in-out infinite;
+        }
+
+        .star:nth-child(odd) {
+            animation-delay: 0s;
+            animation-duration: 2.5s;
+        }
+
+        .star:nth-child(even) {
+            animation-delay: 1s;
+            animation-duration: 3.5s;
+        }
+
+        .star:nth-child(3n) {
+            animation-delay: 0.5s;
+            animation-duration: 4s;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { 
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.8);
+            animation: shoot 3s ease-in infinite;
+            opacity: 0;
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+            transform-origin: right center;
+        }
+
+        .shooting-star:nth-child(1) {
+            top: 20%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .shooting-star:nth-child(2) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 8s;
+        }
+
+        .shooting-star:nth-child(3) {
+            top: 60%;
+            left: 90%;
+            animation-delay: 15s;
+        }
+
+        @keyframes shoot {
+            0% {
+                opacity: 0;
+                transform: translateX(0) translateY(0) rotate(45deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(800px) translateY(800px) rotate(45deg);
+            }
+        }
+
+        .shooting-star.click-star {
+            animation: shootClick 2s ease-in forwards;
+        }
+
+        @keyframes shootClick {
+            0% {
+                opacity: 0;
+                transform: translateX(0) translateY(0) rotate(45deg);
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(800px) translateY(800px) rotate(45deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #4a90e2, #63b3ed, #4299e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 80px rgba(74, 144, 226, 0.5);
+            margin-bottom: 1rem;
+            animation: glow 3s ease-in-out infinite alternate;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 40px rgba(74, 144, 226, 0.8));
+            }
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: #b0c4de;
+            margin-bottom: 2rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(176, 196, 222, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #8b9dc3;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            color: white;
+            box-shadow: 0 10px 40px rgba(74, 144, 226, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(74, 144, 226, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4a90e2;
+            border: 2px solid #4a90e2;
+            box-shadow: 0 10px 40px rgba(74, 144, 226, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(74, 144, 226, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(74, 144, 226, 0.4);
+        }
+
+        .stats {
+            display: flex;
+            gap: 4rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 1.5rem;
+            color: #4a90e2;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(74, 144, 226, 0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(74, 144, 226, 0.3);
+            min-width: 120px;
+            transition: all 0.3s;
+        }
+
+        .countdown-item:nth-child(1) { order: 1; }
+        .countdown-item:nth-child(2) { order: 2; }
+        .countdown-item:nth-child(4) { order: 4; }
+        .countdown-item:nth-child(5) { order: 5; }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a90e2;
+            text-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #b0c4de;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(74, 144, 226, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            backdrop-filter: blur(10px);
+            min-width: 150px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(74, 144, 226, 0.1);
+            border-color: rgba(74, 144, 226, 0.4);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4a90e2;
+            display: block;
+        }
+
+        .stat-number.loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #b0c4de;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 48%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(0) translateY(0);
+            }
+            40% {
+                transform: translateX(0) translateY(-20px);
+            }
+            60% {
+                transform: translateX(0) translateY(-10px);
+            }
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid #4a90e2;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #4a90e2;
+            border-radius: 50%;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                top: 10px;
+            }
+            100% {
+                opacity: 0;
+                top: 30px;
+            }
+        }
+
+        .features {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(30, 40, 60, 0.6);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #4a90e2;
+            box-shadow: 0 20px 50px rgba(74, 144, 226, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .feature-card h3 {
+            color: #4a90e2;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #b0c4de;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="stars" id="starField"></div>
+        
+        <div class="hero-content">
+            <div class="logo">ALLIANCE NETWORK</div>
+            <div class="subtitle">Star Wars Clone Wars RP</div>
+            <p class="tagline">
+                Erlebe epische Schlachten, authentisches Roleplay und eine lebendige Community 
+                in der Welt der Klonkriege. Dein Abenteuer beginnt jetzt.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="https://discord.gg/BjMZCYHXCg" class="btn btn-primary" target="_blank">Server beitreten</a>
+                <a href="404.html" class="btn btn-secondary">Mehr erfahren</a>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number loading" id="memberCount">...</span>
+                    <span class="stat-label">Mitglieder</span>
+                </div>
+            </div>
+
+            <div class="countdown-container">
+                <div class="countdown-title">Server Release in:</div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Tage</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Stunden</span>
+                    </div>
+                    <div class="scroll-indicator">
+                        <span></span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minuten</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Sekunden</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Navy oder Army</h3>
+                <p>Entscheide dich für den Dienst als Frontkämpfer oder als teil der Flotte.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3>Aktive Community</h3>
+                <p>Freundliche Spieler und erfahrenes Staff-Team sorgen für ein unvergessliches Erlebnis.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍💻</div>
+                <h3>Custom Content</h3>
+                <p>Exklusive Moddels und Custom Scrypte.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💥</div>
+                <h3>Epische Events</h3>
+                <p>Regelmäßige Events, Missionen und großangelegte Schlachten erwarten dich, sowie 2 unabhängiege Server für Raum und Bodenschlachten.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><img src="medic_emblem.png" alt="Medic"></div>
+                <h3>Immersives Medic RP</h3>
+                <p>Realistische Medizin-Mechaniken und tiefgreifendes Medical Roleplay.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Aufstiegssystem</h3>
+                <p>Hilf uns mit deiner Unterstützung im Kampf, um in den Rängen der Republik aufzusteigen und neuere Ausrüstung und Schiffe zu erhalten.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sterne generieren
+        function createStars() {
+            const starField = document.getElementById('starField');
+            const numberOfStars = 100;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = (Math.random() * 2 + 1) + 'px';
+                star.style.height = star.style.width;
+                starField.appendChild(star);
+            }
+
+            // Sternschnuppen hinzufügen
+            for (let i = 0; i < 3; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                starField.appendChild(shootingStar);
+            }
+        }
+
+        // Sternschnuppe beim Klick erstellen
+        function createClickShootingStar() {
+            const starField = document.getElementById('starField');
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star click-star';
+            
+            // Zufällige Startposition oben links im Bild
+            const startX = Math.random() * 30; // 0-30% von links
+            const startY = Math.random() * 30; // 0-30% von oben
+            
+            shootingStar.style.left = startX + '%';
+            shootingStar.style.top = startY + '%';
+            shootingStar.style.animationDelay = '0s';
+            starField.appendChild(shootingStar);
+
+            // Sternschnuppe nach Animation entfernen
+            setTimeout(() => {
+                shootingStar.remove();
+            }, 2000);
+        }
+
+        // Click-Event für die gesamte Seite
+        document.addEventListener('click', (e) => {
+            createClickShootingStar();
+        });
+
+        // Discord Widget API aufrufen
+        async function loadDiscordStats() {
+            try {
+                const response = await fetch('https://discord.com/api/v10/invites/BjMZCYHXCg?with_counts=true');
+                const data = await response.json();
+                
+                // Mitgliederzahl anzeigen
+                const memberCount = data.approximate_member_count;
+                
+                document.getElementById('memberCount').textContent = memberCount.toLocaleString('de-DE');
+                
+                // Loading Animation entfernen
+                document.getElementById('memberCount').classList.remove('loading');
+            } catch (error) {
+                console.error('Fehler beim Laden der Discord-Statistiken:', error);
+                // Fallback-Werte bei Fehler
+                document.getElementById('memberCount').textContent = '150+';
+                document.getElementById('memberCount').classList.remove('loading');
+            }
+        }
+
+        // Countdown Funktion
+        function updateCountdown() {
+            const releaseDate = new Date('2026-01-16T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = releaseDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                document.querySelector('.countdown-title').textContent = 'Server ist live!';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Statistiken beim Laden der Seite abrufen
+        createStars();
+        loadDiscordStats();
+        
+        // Countdown starten
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Optional: Statistiken alle 5 Minuten aktualisieren
+        setInterval(loadDiscordStats, 300000);
+    </script>
+</body>
+</html>
