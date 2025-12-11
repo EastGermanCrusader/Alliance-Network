@@ -381,49 +381,6 @@
             margin-top: 0.5rem;
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            z-index: 6;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-20px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        .scroll-indicator span {
-            display: block;
-            width: clamp(25px, 5vw, 30px);
-            height: clamp(40px, 8vw, 50px);
-            border: 2px solid #4a90e2;
-            border-radius: 25px;
-            position: relative;
-        }
-
-        .scroll-indicator span::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background: #4a90e2;
-            border-radius: 50%;
-            animation: scroll 2s infinite;
-        }
-
         @keyframes scroll {
             0% {
                 opacity: 1;
@@ -519,9 +476,6 @@
                 gap: 0.5rem;
             }
 
-            .scroll-indicator {
-                display: none;
-            }
         }
 
         @media (max-width: 480px) {
@@ -564,7 +518,7 @@
             </p>
 
             <div class="cta-buttons">
-                <a href="https://discord.gg/2EA5YJKXqy" class="btn btn-primary" target="_blank">Server beitreten</a>
+                <a href="https://discord.gg/BjMZCYHXCg" class="btn btn-primary" target="_blank">Server beitreten</a>
                 <a href="404.html" class="btn btn-secondary">Mehr erfahren</a>
             </div>
 
@@ -596,10 +550,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span></span>
         </div>
     </div>
 
