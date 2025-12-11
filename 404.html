@@ -6,10 +6,8 @@
     <title>Alliance Network</title>
     <link rel="icon" href="icon.png" type="image/png">
     
-    <!-- Meta Description für Suchmaschinen -->
     <meta name="description" content="Erlebe epische Star Wars Clone Wars RP Schlachten. Trete unserer aktiven Community bei und nimm an immersiven Roleplay-Events teil.">
     
-    <!-- Open Graph Meta Tags für Social Media (Discord, Facebook, etc.) -->
     <meta property="og:title" content="Alliance Network - Star Wars Clone Wars RP">
     <meta property="og:description" content="Erlebe epische Schlachten, authentisches Roleplay und eine lebendige Community in der Welt der Klonkriege. Dein Abenteuer beginnt jetzt.">
     <meta property="og:image" content="https://eastgermancrusader.github.io/Alliance-Network/icon.png">
@@ -17,13 +15,11 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Alliance Network">
     
-    <!-- Discord-spezifische Tags -->
     <meta property="discord:invite" content="BjMZCYHXCg">
     <meta property="discord:server" content="Alliance Network">
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* Grundlegende Stile */
         * {
             margin: 0;
             padding: 0;
@@ -38,35 +34,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
+            padding: 1rem;
         }
         
         .container {
             position: relative;
             width: 100%;
             max-width: 1200px;
-            padding: 20px;
+            padding: clamp(1rem, 3vw, 2rem);
             text-align: center;
         }
         
-        /* TV-Animation Container */
         .tv-container {
             position: relative;
             z-index: 10;
-            margin-bottom: 40px;
+            margin-bottom: clamp(2rem, 5vw, 4rem);
         }
         
-        /* Work in Progress Text */
         .wip-content {
             z-index: 10;
             position: relative;
             max-width: 600px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
         
         .wip-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: clamp(1rem, 3vw, 2rem);
             color: #f27405;
             font-weight: 300;
             letter-spacing: 2px;
@@ -74,23 +70,22 @@
         }
         
         .wip-description {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             color: #aaa;
             line-height: 1.6;
-            margin-bottom: 40px;
+            margin-bottom: clamp(2rem, 4vw, 4rem);
         }
         
-        /* Back Link */
         .back-link {
             display: inline-block;
-            padding: 12px 30px;
+            padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 3rem);
             background: transparent;
             color: #f27405;
             text-decoration: none;
             border: 1px solid #f27405;
             border-radius: 4px;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 2vw, 0.9rem);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -100,16 +95,17 @@
             transform: translateY(-2px);
         }
         
-        /* Von Uiverse.io übernommene TV-Stile */
+        /* TV-Animation Container */
         .main_wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 30em;
-            height: 30em;
+            width: min(30em, 90vw);
+            height: min(30em, 90vw);
             z-index: 5;
             position: relative;
             margin: 0 auto;
+            transform-origin: center;
         }
         
         .main {
@@ -118,6 +114,7 @@
             align-items: center;
             justify-content: center;
             margin-top: 5em;
+            width: 100%;
         }
         
         .antenna {
@@ -400,7 +397,7 @@
         .notfound_text {
             background-color: black;
             padding: 0.3em 0.6em;
-            font-size: 0.75em;
+            font-size: clamp(0.6rem, 2vw, 0.75rem);
             color: white;
             letter-spacing: 0;
             border-radius: 5px;
@@ -595,31 +592,80 @@
             margin-top: 0.8em;
         }
         
-        /* Responsive Anpassungen */
+        /* Responsive Anpassungen für TV */
+        @media (max-width: 1024px) {
+            .buttons_div {
+                right: -50px;
+                width: 3.5em;
+                height: 7em;
+            }
+        }
+        
         @media (max-width: 768px) {
             .main_wrapper {
-                transform: scale(0.8);
-                margin-bottom: 20px;
+                transform: scale(0.75);
             }
             
-            .wip-title {
-                font-size: 2rem;
+            .buttons_div {
+                right: -40px;
+                width: 3em;
+                height: 6em;
+                row-gap: 0.5em;
+            }
+            
+            .b1, .b2 {
+                width: 1.3em;
+                height: 1.3em;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .main_wrapper {
+                transform: scale(0.6);
+            }
+            
+            .buttons_div {
+                right: -35px;
             }
         }
         
         @media (max-width: 480px) {
             .main_wrapper {
-                transform: scale(0.6);
-                margin-bottom: 10px;
-            }
-            
-            .wip-title {
-                font-size: 1.6rem;
+                transform: scale(0.5);
             }
             
             .wip-description {
-                font-size: 1rem;
-                padding: 0 15px;
+                padding: 0;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .main_wrapper {
+                transform: scale(0.4);
+            }
+        }
+        
+        /* Landscape Mode für kleine Geräte */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .tv-container {
+                margin-bottom: 0;
+                flex: 0 0 auto;
+            }
+            
+            .main_wrapper {
+                transform: scale(0.5);
+            }
+            
+            .wip-content {
+                flex: 1;
+                text-align: left;
             }
         }
     </style>
@@ -697,13 +743,11 @@
     </div>
     
     <script>
-        // Einfache Interaktion für die TV-Knöpfe
         document.addEventListener('DOMContentLoaded', function() {
             const button1 = document.querySelector('.b1');
             const button2 = document.querySelector('.b2');
             const screenText = document.querySelector('.notfound_text');
             
-            // Button 1: Wechselt WIP-Text
             button1.addEventListener('click', function() {
                 const messages = ['WIP', 'IN ARBEIT', 'BAUSTELLE', 'WORK IN PROGRESS'];
                 const currentText = screenText.textContent.trim();
@@ -718,7 +762,6 @@
                 }, 500);
             });
             
-            // Button 2: Zufällige Farbe
             button2.addEventListener('click', function() {
                 const colors = ['#006c6b', '#ff0afe', '#10ea00', '#f27405'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -729,7 +772,6 @@
                 }, 1000);
             });
             
-            // Antennen-Wackeln bei Mausbewegung
             const a1 = document.querySelector('.a1');
             const a2 = document.querySelector('.a2');
             

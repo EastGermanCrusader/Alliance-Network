@@ -27,18 +27,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            .countdown-item {
-                min-width: 100px;
-                padding: 1rem 1.5rem;
-            }
-
-            .countdown-number {
-                font-size: 2rem;
-            }
-
-            .countdown {
-                gap: 1rem;
-            }
         }
 
         body {
@@ -50,28 +38,26 @@
 
         .hero {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1b2a 100%);
             overflow: hidden;
+            padding: 2rem 1rem;
         }
 
- 
         .hero::after {
             content: '';
             position: absolute;
             bottom: 0; 
             left: 0;
             width: 100%;
-            height: 150px; 
-            
+            height: clamp(80px, 15vh, 150px);
             background: linear-gradient(to top, #0a0e27 0%, transparent 100%);
             z-index: 5; 
         }
-        
 
         .stars {
             position: absolute;
@@ -131,7 +117,7 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 80px;
+            width: clamp(40px, 8vw, 80px);
             height: 2px;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
             transform-origin: right center;
@@ -168,7 +154,7 @@
             }
             100% {
                 opacity: 0;
-                transform: translateX(800px) translateY(800px) rotate(45deg);
+                transform: translateX(min(800px, 80vw)) translateY(min(800px, 80vh)) rotate(45deg);
             }
         }
 
@@ -189,7 +175,7 @@
             }
             100% {
                 opacity: 0;
-                transform: translateX(800px) translateY(800px) rotate(45deg);
+                transform: translateX(min(800px, 80vw)) translateY(min(800px, 80vh)) rotate(45deg);
             }
         }
 
@@ -199,10 +185,11 @@
             text-align: center;
             padding: 2rem;
             max-width: 1200px;
+            width: 100%;
         }
 
         .logo {
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: bold;
             background: linear-gradient(135deg, #4a90e2, #63b3ed, #4299e1);
             -webkit-background-clip: text;
@@ -212,6 +199,7 @@
             margin-bottom: 1rem;
             animation: glow 3s ease-in-out infinite alternate;
             letter-spacing: 0.1em;
+            word-break: break-word;
         }
 
         @keyframes glow {
@@ -224,7 +212,7 @@
         }
 
         .subtitle {
-            font-size: 2rem;
+            font-size: clamp(1.2rem, 4vw, 2rem);
             color: #b0c4de;
             margin-bottom: 2rem;
             letter-spacing: 0.2em;
@@ -233,26 +221,27 @@
         }
 
         .tagline {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             color: #8b9dc3;
             margin-bottom: 3rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.8;
+            padding: 0 1rem;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 2rem;
+            gap: clamp(1rem, 3vw, 2rem);
             justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 4rem;
         }
 
         .btn {
-            padding: 1.2rem 3rem;
-            font-size: 1.2rem;
+            padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 3rem);
+            font-size: clamp(1rem, 2vw, 1.2rem);
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
@@ -290,7 +279,7 @@
 
         .stats {
             display: flex;
-            gap: 4rem;
+            gap: clamp(1.5rem, 4vw, 4rem);
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 3rem;
@@ -300,10 +289,11 @@
         .countdown-container {
             margin-top: 2rem;
             text-align: center;
+            width: 100%;
         }
 
         .countdown-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: #4a90e2;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
@@ -312,24 +302,20 @@
 
         .countdown {
             display: flex;
-            gap: 2rem;
+            gap: clamp(0.5rem, 2vw, 2rem);
             justify-content: center;
             flex-wrap: wrap;
+            position: relative;
         }
 
         .countdown-item {
             background: rgba(74, 144, 226, 0.1);
-            padding: 1.5rem 2rem;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1.2rem, 3vw, 2rem);
             border-radius: 15px;
             border: 2px solid rgba(74, 144, 226, 0.3);
-            min-width: 120px;
+            min-width: clamp(80px, 15vw, 120px);
             transition: all 0.3s;
         }
-
-        .countdown-item:nth-child(1) { order: 1; }
-        .countdown-item:nth-child(2) { order: 2; }
-        .countdown-item:nth-child(4) { order: 4; }
-        .countdown-item:nth-child(5) { order: 5; }
 
         .countdown-item:hover {
             transform: translateY(-5px);
@@ -339,7 +325,7 @@
 
         .countdown-number {
             display: block;
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: bold;
             color: #4a90e2;
             text-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
@@ -347,7 +333,7 @@
 
         .countdown-label {
             display: block;
-            font-size: 0.9rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
             color: #b0c4de;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -356,12 +342,12 @@
 
         .stat-item {
             text-align: center;
-            padding: 1.5rem;
+            padding: clamp(1rem, 2vw, 1.5rem);
             background: rgba(74, 144, 226, 0.05);
             border-radius: 15px;
             border: 1px solid rgba(74, 144, 226, 0.2);
             backdrop-filter: blur(10px);
-            min-width: 150px;
+            min-width: clamp(120px, 20vw, 150px);
             transition: all 0.3s;
         }
 
@@ -372,7 +358,7 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             font-weight: bold;
             color: #4a90e2;
             display: block;
@@ -388,7 +374,7 @@
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
             color: #b0c4de;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -398,27 +384,28 @@
         .scroll-indicator {
             position: absolute;
             bottom: 50px;
-            left: 48%;
+            left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
+            z-index: 6;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
-                transform: translateX(0) translateY(0);
+                transform: translateX(-50%) translateY(0);
             }
             40% {
-                transform: translateX(0) translateY(-20px);
+                transform: translateX(-50%) translateY(-20px);
             }
             60% {
-                transform: translateX(0) translateY(-10px);
+                transform: translateX(-50%) translateY(-10px);
             }
         }
 
         .scroll-indicator span {
             display: block;
-            width: 30px;
-            height: 50px;
+            width: clamp(25px, 5vw, 30px);
+            height: clamp(40px, 8vw, 50px);
             border: 2px solid #4a90e2;
             border-radius: 25px;
             position: relative;
@@ -449,7 +436,7 @@
         }
 
         .features {
-            padding: 5rem 2rem;
+            padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 3vw, 2rem);
             background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
         }
 
@@ -457,13 +444,13 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
         }
 
         .feature-card {
             background: rgba(30, 40, 60, 0.6);
-            padding: 2.5rem;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
             border-radius: 15px;
             border: 1px solid rgba(74, 144, 226, 0.3);
             text-align: center;
@@ -477,51 +464,89 @@
         }
 
         .feature-icon {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
         }
 
         .feature-icon img {
-            width: 60px;
-            height: 60px;
+            width: clamp(50px, 10vw, 60px);
+            height: clamp(50px, 10vw, 60px);
             object-fit: contain;
         }
 
         .feature-card h3 {
             color: #4a90e2;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             margin-bottom: 1rem;
         }
 
         .feature-card p {
             color: #b0c4de;
             line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
+        /* Mobile Optimierungen */
         @media (max-width: 768px) {
+            .hero {
+                padding: 1rem 0.5rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
             .logo {
-                font-size: 3rem;
+                letter-spacing: 0.05em;
             }
 
             .subtitle {
-                font-size: 1.5rem;
+                letter-spacing: 0.1em;
             }
 
-            .tagline {
-                font-size: 1rem;
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto 3rem;
             }
 
             .btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
+                width: 100%;
+            }
+
+            .countdown {
+                gap: 0.5rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown-item {
+                min-width: 70px;
+                padding: 0.8rem 1rem;
             }
 
             .stats {
-                gap: 2rem;
+                gap: 1rem;
             }
 
-            .stat-number {
-                font-size: 2rem;
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Sehr große Bildschirme */
+        @media (min-width: 1920px) {
+            .hero-content {
+                max-width: 1400px;
+            }
+
+            .features-grid {
+                max-width: 1400px;
             }
         }
     </style>
@@ -561,9 +586,6 @@
                         <span class="countdown-number" id="hours">00</span>
                         <span class="countdown-label">Stunden</span>
                     </div>
-                    <div class="scroll-indicator">
-                        <span></span>
-                    </div>
                     <div class="countdown-item">
                         <span class="countdown-number" id="minutes">00</span>
                         <span class="countdown-label">Minuten</span>
@@ -574,6 +596,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span></span>
         </div>
     </div>
 
@@ -616,7 +642,7 @@
         // Sterne generieren
         function createStars() {
             const starField = document.getElementById('starField');
-            const numberOfStars = 100;
+            const numberOfStars = window.innerWidth < 768 ? 50 : 100;
             
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
@@ -642,22 +668,19 @@
             const shootingStar = document.createElement('div');
             shootingStar.className = 'shooting-star click-star';
             
-            // Zufällige Startposition oben links im Bild
-            const startX = Math.random() * 30; // 0-30% von links
-            const startY = Math.random() * 30; // 0-30% von oben
+            const startX = Math.random() * 30;
+            const startY = Math.random() * 30;
             
             shootingStar.style.left = startX + '%';
             shootingStar.style.top = startY + '%';
             shootingStar.style.animationDelay = '0s';
             starField.appendChild(shootingStar);
 
-            // Sternschnuppe nach Animation entfernen
             setTimeout(() => {
                 shootingStar.remove();
             }, 2000);
         }
 
-        // Click-Event für die gesamte Seite
         document.addEventListener('click', (e) => {
             createClickShootingStar();
         });
@@ -668,16 +691,12 @@
                 const response = await fetch('https://discord.com/api/v10/invites/BjMZCYHXCg?with_counts=true');
                 const data = await response.json();
                 
-                // Mitgliederzahl anzeigen
                 const memberCount = data.approximate_member_count;
                 
                 document.getElementById('memberCount').textContent = memberCount.toLocaleString('de-DE');
-                
-                // Loading Animation entfernen
                 document.getElementById('memberCount').classList.remove('loading');
             } catch (error) {
                 console.error('Fehler beim Laden der Discord-Statistiken:', error);
-                // Fallback-Werte bei Fehler
                 document.getElementById('memberCount').textContent = '150+';
                 document.getElementById('memberCount').classList.remove('loading');
             }
@@ -708,6 +727,17 @@
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
+
+        // Responsive Sterne bei Größenänderung
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const starField = document.getElementById('starField');
+                starField.innerHTML = '';
+                createStars();
+            }, 250);
+        });
 
         // Statistiken beim Laden der Seite abrufen
         createStars();
