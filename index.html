@@ -13,12 +13,12 @@
     <meta property="og:title" content="Alliance Network - Star Wars Clone Wars RP">
     <meta property="og:description" content="Erlebe epische Schlachten, authentisches Roleplay und eine lebendige Community in der Welt der Klonkriege. Dein Abenteuer beginnt jetzt.">
     <meta property="og:image" content="https://eastgermancrusader.github.io/Alliance-Network/icon.png">
-    <meta property="og:url" content="https://eastgermancrusader.github.io/Alliance-Network/">
+    <meta property="og:url" content="https://alliance-network.de">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Alliance Network">
     
     <!-- Discord-spezifische Tags -->
-    <meta property="discord:invite" content="BjMZCYHXCg">
+    <meta property="discord:invite" content="2EA5YJKXqy">
     <meta property="discord:server" content="Alliance Network">
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -36,6 +36,249 @@
             overflow-x: hidden;
         }
 
+        /* ========== TOS MODAL STYLES ========== */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .modal-container {
+            max-height: 80vh;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #1a1f3a;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.5);
+            border: 2px solid #4a90e2;
+        }
+
+        @media (max-width: 600px) {
+            .modal-container {
+                width: 95%;
+                max-height: 90vh;
+            }
+        }
+
+        .modal-container-header {
+            padding: 16px 32px;
+            border-bottom: 1px solid #4a90e2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            background: rgba(10, 14, 39, 0.8);
+        }
+
+        .modal-container-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1;
+            font-weight: 700;
+            font-size: 1.125;
+            color: #4a90e2;
+        }
+
+        .modal-container-title svg {
+            width: 32px;
+            height: 32px;
+            color: #4a90e2;
+        }
+
+        .modal-container-body {
+            padding: 24px 32px;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .modal-container-body h2 {
+            color: #4a90e2;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .modal-container-body h3 {
+            color: #4a90e2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .modal-container-body h4 {
+            color: #4a90e2;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .modal-container-body p {
+            color: #b0c4de;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .modal-container-body ul {
+            margin-left: 20px;
+            color: #b0c4de;
+            margin-bottom: 15px;
+        }
+
+        .modal-container-body li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .modal-container-footer {
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-top: 1px solid #4a90e2;
+            gap: 12px;
+            position: relative;
+            background: rgba(10, 14, 39, 0.8);
+        }
+
+        .modal-container-footer:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -51px;
+            left: 24px;
+            right: 24px;
+            height: 50px;
+            flex-shrink: 0;
+            background-image: linear-gradient(to top, rgba(26, 31, 58, 0.75), transparent);
+            pointer-events: none;
+        }
+
+        .button {
+            padding: 12px 20px;
+            border-radius: 8px;
+            background-color: transparent;
+            border: 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .button.is-ghost {
+            background: transparent;
+            color: #4a90e2;
+            border: 2px solid #4a90e2;
+        }
+
+        .button.is-ghost:hover, .button.is-ghost:focus {
+            background: rgba(74, 144, 226, 0.1);
+        }
+
+        .button.is-primary {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            color: #fff;
+        }
+
+        .button.is-primary:hover, .button.is-primary:focus {
+            background: linear-gradient(135deg, #357abd, #2a5f9a);
+        }
+
+        .icon-button {
+            padding: 0;
+            border: 0;
+            background-color: transparent;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.15s ease;
+        }
+
+        .icon-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .icon-button:hover, .icon-button:focus {
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        /* Verstecke Modal standardmäßig mit CSS */
+        .modal[data-hidden="true"] {
+            display: none !important;
+        }
+
+        /* Website Content - initial versteckt */
+        .website-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .website-content[data-visible="true"] {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Versteckte Overlay zum Schutz */
+        .protection-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999998;
+            display: none;
+        }
+
+        /* Debug-Modus Warnung */
+        .debug-warning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ff0000;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            z-index: 1000000;
+            font-weight: bold;
+        }
+
+        .tos-date {
+            font-size: 0.9em;
+            color: #8b9dc3;
+            margin-top: 20px;
+            border-top: 1px solid #4a90e2;
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        /* ========== EXISTING WEBSITE STYLES ========== */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -381,8 +624,6 @@
             margin-top: 0.5rem;
         }
 
-    
-
         .features {
             padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 3vw, 2rem);
             background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
@@ -496,200 +737,748 @@
         }
     </style>
 </head>
-<body>
-    <div class="hero">
-        <div class="stars" id="starField"></div>
-        
-        <div class="hero-content">
-            <div class="logo">ALLIANCE NETWORK</div>
-            <div class="subtitle">Star Wars Clone Wars RP</div>
-            <p class="tagline">
-                Erlebe epische Schlachten, authentisches Roleplay und eine lebendige Community 
-                in der Welt der Klonkriege. Dein Abenteuer beginnt jetzt.
-            </p>
+<body data-protected="true">
+    <!-- Debug-Warnung -->
+    <div class="debug-warning" id="debugWarning">
+        ⚠️ Debug-Modus erkannt! Webseite wird blockiert.
+    </div>
 
-            <div class="cta-buttons">
-                <a href="https://discord.gg/BjMZCYHXCg" class="btn btn-primary" target="_blank">Server beitreten</a>
-                <a href="404.html" class="btn btn-secondary">Mehr erfahren</a>
-            </div>
+    <!-- Schutz-Overlay -->
+    <div class="protection-overlay" id="protectionOverlay"></div>
 
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number loading" id="memberCount">...</span>
-                    <span class="stat-label">Mitglieder</span>
+    <!-- TOS Modal -->
+    <div class="modal" id="tosModal" data-hidden="false">
+        <article class="modal-container">
+            <header class="modal-container-header">
+                <span class="modal-container-title">
+                    <svg aria-hidden="true" height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M14 9V4H5v16h6.056c.328.417.724.785 1.18 1.085l1.39.915H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8v1h-7zm-2 2h9v5.949c0 .99-.501 1.916-1.336 2.465L16.5 21.498l-3.164-2.084A2.953 2.953 0 0 1 12 16.95V11zm2 5.949c0 .316.162.614.436.795l2.064 1.36 2.064-1.36a.954.954 0 0 0 .436-.795V13h-5v3.949z" fill="currentColor"></path>
+                    </svg>
+                    Nutzungsbedingungen des Alliance Network
+                </span>
+                <button class="icon-button" id="closeButton" data-action="decline">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" fill="currentColor"></path>
+                    </svg>
+                </button>
+            </header>
+            <section class="modal-container-body rtf">
+                <h2>Nutzungsbedingungen (Terms of Service) des ALLIANCE NETWORK</h2>
+                <p><strong>Stand:</strong> 13.12.2025</p>
+                <p><strong>Wichtig:</strong> Diese Webseite verwendet erweiterte Schutzmechanismen gegen Manipulation. Durch die Nutzung dieser Seite erklären Sie sich mit folgenden Bedingungen einverstanden:</p>
+                
+                <h3>1. Anbieter und Kontakt</h3>
+                <p>Das <strong>ALLIANCE NETWORK</strong> ist ein <strong>nicht-kommerzielles (non-profit) Gaming-Netzwerk</strong>, betrieben von mehreren Einzelpersonen (nachfolgend „die Betreiber“ genannt).</p>
+                <p><strong>Kontakt:</strong> E-Mail: <a href="mailto:info@alliance-network.de">info@alliance-network.de</a></p>
+
+                <h3>2. Geltungsbereich und Annahme</h3>
+                <p>Diese Nutzungsbedingungen gelten für sämtliche Angebote, Dienste und Inhalte des ALLIANCE NETWORK, einschließlich der Website, angebundener Dienste (wie Server) und genutzter externer Schnittstellen (APIs).</p>
+                <p>Mit dem Zugriff oder der Nutzung erklären Sie sich mit diesen Bedingungen einverstanden.</p>
+
+                <h3>3. Mindestalter</h3>
+                <p>Die Nutzung der Angebote ist Personen ab <strong>13 Jahren</strong> vorbehalten. Jüngeren Personen ist die Nutzung untersagt.</p>
+
+                <h3>4. Zweck und Verfügbarkeit</h3>
+                <p>Das ALLIANCE NETWORK dient ausschließlich nicht-kommerziellen Zwecken im Bereich Gaming und Community. Die Betreiber bieten die Dienste <strong>ohne Gewähr</strong> an. Es besteht kein Anspruch auf ständige Verfügbarkeit, bestimmte Funktionen oder dauerhaften Betrieb.</p>
+
+                <h3>5. Nutzerkonten und Datenverarbeitung</h3>
+                <p><strong>Aktuell:</strong> Die Website des ALLIANCE NETWORK bietet <strong>keine eigenen Nutzerkonten</strong> an.</p>
+                <p><strong>Externe Plattformen:</strong> Für bestimmte Dienste (z.B. Discord, Steam für Garry's Mod Server) sind Konten bei den jeweiligen Drittanbietern erforderlich. Die Betreiber <strong>verarbeiten, speichern oder geben</strong> Zugangsdaten zu diesen externen Konten <strong>nicht weiter</strong>.</p>
+
+                <h4>Geplantes PDA-System (Garry's Mod):</h4>
+                <p>Für die Zukunft ist ein optionales PDA-System (z.B. für Notizen) auf dem Garry's Mod Server geplant.</p>
+                <ul>
+                    <li>Die Verknüpfung erfolgt voraussichtlich über die Steam-ID oder ähnliche spielerbezogene Daten.</li>
+                    <li>Die technische Umsetzung ist noch nicht final.</li>
+                    <li>In diesem System gespeicherte Daten werden <strong>nicht an Dritte weitergegeben</strong> und spätestens <strong>nach 3 Jahren</strong> automatisch gelöscht.</li>
+                </ul>
+
+                <h3>6. Pflichten der Nutzer & Verbotene Handlungen</h3>
+                <p>Nutzer verpflichten sich,</p>
+                <ol>
+                    <li>keine rechtswidrigen Inhalte zu verbreiten,</li>
+                    <li>keine Handlungen vorzunehmen, die den Betrieb oder die Sicherheit des Netzwerks beeinträchtigen,</li>
+                    <li>keine Urheberrechte oder sonstigen Rechte Dritter zu verletzen,</li>
+                    <li><strong>ausdrücklich keine technischen Schutzmaßnahmen zu umgehen oder zu manipulieren.</strong></li>
+                </ol>
+
+                <p><strong>Insbesondere streng untersagt</strong> ist jegliche <strong>clientseitige Manipulation</strong>, einschließlich der Nutzung von Skripten, Modifikationen, Exploits oder anderen technischen Eingriffen, um:</p>
+                <ul>
+                    <li>die Zustimmung zu diesen Nutzungsbedingungen zu umgehen,</li>
+                    <li>Sicherheitsvorkehrungen außer Kraft zu setzen,</li>
+                    <li>sich unberechtigten Zugang zu internen Systemen oder Funktionen zu verschaffen.</li>
+                </ul>
+
+                <h3>7. Externe Schnittstellen (APIs)</h3>
+                <p>Zur Darstellung bestimmter Informationen nutzt das ALLIANCE NETWORK externe Schnittstellen, z.B. die <strong>Discord API</strong>, um die aktuelle Mitgliederanzahl anzuzeigen. Für die Funktionalität, Korrektheit und Verfügbarkeit dieser Drittanbieterdienste wird keine Gewähr übernommen.</p>
+
+                <h3>8. Analyse- und Drittanbieterdienste</h3>
+                <p>Für den Betrieb der Website werden folgende Dienste eingesetzt:</p>
+                <ul>
+                    <li><strong>Google Analytics</strong> zur anonymisierten Analyse des Nutzungsverhaltens.</li>
+                    <li><strong>Google Fonts</strong> zur einheitlichen Schriftartendarstellung.</li>
+                </ul>
+                <p>Es werden <strong>keine eigenen Cookies</strong> gesetzt. Die Nutzung unterliegt den Datenschutzbestimmungen der jeweiligen Anbieter. Weitere Details sind in der separaten <strong>Datenschutzerklärung</strong> zu finden.</p>
+
+                <h3>9. Zusätzliche Regelwerke auf externen Plattformen</h3>
+                <p>Zusätzlich zu diesen Nutzungsbedingungen gelten auf den jeweiligen Plattformen:</p>
+                <ul>
+                    <li>Auf <strong>Discord</strong>: Die Discord Nutzungsbedingungen, das geltende Serverregelwerk und deutsches Recht.</li>
+                    <li>Auf dem <strong>Garry's Mod Server</strong>: Das geltende Serverregelwerk und deutsches Recht.</li>
+                </ul>
+
+                <h3>10. Aufzeichnungen zu Zwecken der Aufklärung</h3>
+                <p>Zur Bearbeitung von <strong>Supportanfragen</strong> und zur Aufklärung von <strong>Regelverstößen</strong> behalten sich die Betreiber das Recht vor, in den betreffenden Diensten (z.B. Spiel-Server) vorübergehend <strong>Bild- und Tonaufzeichnungen</strong> anzufertigen.</p>
+                <p>Diese dienen <strong>ausschließlich</strong> der Sachverhaltsklärung, internen Qualitätssicherung und Schulung. Sie werden <strong>nicht veröffentlicht, nicht an Dritte weitergegeben</strong> und nach Erfüllung des Zwecks <strong>gelöscht</strong>.</p>
+
+                <h3>11. Haftungsausschluss</h3>
+                <p>Die Nutzung erfolgt auf eigenes Risiko. Soweit gesetzlich zulässig, wird <strong>jede Haftung</strong> der Betreiber ausgeschlossen, insbesondere für:</p>
+                <ul>
+                    <li>die ständige Verfügbarkeit und Fehlerfreiheit der Dienste,</li>
+                    <li>die Richtigkeit, Vollständigkeit oder Aktualität von Inhalten,</li>
+                    <li>direkte oder indirekte Schäden, die durch die Nutzung oder Nichtnutzung der Angebote entstehen.</li>
+                </ul>
+
+                <h3>12. Sperrung und Ausschluss</h3>
+                <p>Bei Verstößen gegen diese Nutzungsbedingungen behalten sich die Betreiber das Recht vor, Nutzer nach Ermessen <strong>vorübergehend oder dauerhaft</strong> von der Nutzung einzelner oder aller Angebote <strong>auszuschließen</strong>.</p>
+
+                <h3>13. Änderungen der Nutzungsbedingungen</h3>
+                <p>Die Betreiber behalten sich vor, diese Nutzungsbedingungen <strong>jederzeit anzupassen</strong>. Die aktuelle Version wird auf der Website veröffentlicht. Bei fortgesetzter Nutzung nach einer Änderung gilt diese als akzeptiert.</p>
+
+                <h3>14. Schlussbestimmungen</h3>
+                <p>Es gilt das Recht der <strong>Bundesrepublik Deutschland</strong>. Erfüllungsort und Gerichtsstand ist, sofern gesetzlich zulässig, der Sitz der Betreiber.</p>
+                <p>Sollte eine Bestimmung dieser Nutzungsbedingungen unwirksam sein oder werden, berührt dies <strong>nicht die Wirksamkeit der übrigen Bestimmungen</strong>. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Regelung, die dem wirtschaftlichen Zweck am nächsten kommt.</p>
+
+                <p class="tos-date">
+                    Letzte Aktualisierung: 13.12.2025
+                </p>
+                
+                <div id="securityCode" style="display: none; font-size: 0.1px; color: transparent;">SEC-TOS-TOKEN-${Date.now()}-${Math.random().toString(36).substr(2, 9)}</div>
+            </section>
+            <footer class="modal-container-footer">
+                <button class="button is-ghost" id="declineButton" data-action="decline">Ablehnen</button>
+                <button class="button is-primary" id="acceptButton" data-action="accept" onclick="window.handleAccept()">Nutzungsbedingungen akzeptieren</button>
+            </footer>
+        </article>
+    </div>
+
+    <!-- Hauptinhalt (ursprünglich versteckt) -->
+    <div class="website-content" id="mainContent" data-visible="false">
+        <div class="hero">
+            <div class="stars" id="starField"></div>
+            
+            <div class="hero-content">
+                <div class="logo">ALLIANCE NETWORK</div>
+                <div class="subtitle">Star Wars Clone Wars RP</div>
+                <p class="tagline">
+                    Erlebe epische Schlachten, authentisches Roleplay und eine lebendige Community 
+                    in der Welt der Klonkriege. Dein Abenteuer beginnt jetzt.
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="https://discord.gg/2EA5YJKXqy" class="btn btn-primary" target="_blank" id="discordLink">Server beitreten</a>
+                    <a href="404.html" class="btn btn-secondary" id="learnMoreLink">Mehr erfahren</a>
                 </div>
-            </div>
 
-            <div class="countdown-container">
-                <div class="countdown-title">Server Release in:</div>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="days">00</span>
-                        <span class="countdown-label">Tage</span>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number loading" id="memberCount">...</span>
+                        <span class="stat-label">Mitglieder</span>
                     </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="hours">00</span>
-                        <span class="countdown-label">Stunden</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="minutes">00</span>
-                        <span class="countdown-label">Minuten</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="seconds">00</span>
-                        <span class="countdown-label">Sekunden</span>
+                </div>
+
+                <div class="countdown-container">
+                    <div class="countdown-title">Server Release in:</div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">00</span>
+                            <span class="countdown-label">Tage</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">00</span>
+                            <span class="countdown-label">Stunden</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">00</span>
+                            <span class="countdown-label">Minuten</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">00</span>
+                            <span class="countdown-label">Sekunden</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="features">
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Navy oder Army</h3>
-                <p>Entscheide dich für den Dienst als Frontkämpfer oder als teil der Flotte.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌟</div>
-                <h3>Aktive Community</h3>
-                <p>Freundliche Spieler und erfahrenes Staff-Team sorgen für ein unvergessliches Erlebnis.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👨‍💻</div>
-                <h3>Custom Content</h3>
-                <p>Exklusive Moddels und Custom Scrypte.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💥</div>
-                <h3>Epische Events</h3>
-                <p>Regelmäßige Events, Missionen und großangelegte Schlachten erwarten dich, sowie 2 unabhängiege Server für Raum und Bodenschlachten.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><img src="medic_emblem.png" alt="Medic"></div>
-                <h3>Immersives Medic RP</h3>
-                <p>Realistische Medizin-Mechaniken und tiefgreifendes Medical Roleplay.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Aufstiegssystem</h3>
-                <p>Hilf uns mit deiner Unterstützung im Kampf, um in den Rängen der Republik aufzusteigen und neuere Ausrüstung und Schiffe zu erhalten.</p>
+        <div class="features">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Navy oder Army</h3>
+                    <p>Entscheide dich für den Dienst als Frontkämpfer oder als teil der Flotte.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3>Aktive Community</h3>
+                    <p>Freundliche Spieler und erfahrenes Staff-Team sorgen für ein unvergessliches Erlebnis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍💻</div>
+                    <h3>Custom Content</h3>
+                    <p>Exklusive Moddels und Custom Scrypte.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💥</div>
+                    <h3>Epische Events</h3>
+                    <p>Regelmäßige Events, Missionen und großangelegte Schlachten erwarten dich, sowie 2 unabhängiege Server für Raum und Bodenschlachten.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><img src="medic_emblem.png" alt="Medic"></div>
+                    <h3>Immersives Medic RP</h3>
+                    <p>Realistische Medizin-Mechaniken und tiefgreifendes Medical Roleplay.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Aufstiegssystem</h3>
+                    <p>Hilf uns mit deiner Unterstützung im Kampf, um in den Rängen der Republik aufzusteigen und neuere Ausrüstung und Schiffe zu erhalten.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Sterne generieren
-        function createStars() {
-            const starField = document.getElementById('starField');
-            const numberOfStars = window.innerWidth < 768 ? 50 : 100;
+        // ========== ERWEITERTE SICHERHEITSMECHANISMEN ==========
+        
+        // 1. Anti-Debugging Protection
+        (function() {
+            const debugWarning = document.getElementById('debugWarning');
             
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = (Math.random() * 2 + 1) + 'px';
-                star.style.height = star.style.width;
-                starField.appendChild(star);
+            // Detektieren von Developer Tools
+            function detectDevTools() {
+                const threshold = 160;
+                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+                
+                if (widthThreshold || heightThreshold) {
+                    debugWarning.style.display = 'block';
+                    blockPage();
+                    return true;
+                }
+                return false;
             }
-
-            // Sternschnuppen hinzufügen
-            for (let i = 0; i < 3; i++) {
-                const shootingStar = document.createElement('div');
-                shootingStar.className = 'shooting-star';
-                starField.appendChild(shootingStar);
-            }
-        }
-
-        // Sternschnuppe beim Klick erstellen
-        function createClickShootingStar() {
-            const starField = document.getElementById('starField');
-            const shootingStar = document.createElement('div');
-            shootingStar.className = 'shooting-star click-star';
             
-            const startX = Math.random() * 30;
-            const startY = Math.random() * 30;
+            // Check alle 500ms
+            setInterval(detectDevTools, 500);
             
-            shootingStar.style.left = startX + '%';
-            shootingStar.style.top = startY + '%';
-            shootingStar.style.animationDelay = '0s';
-            starField.appendChild(shootingStar);
-
-            setTimeout(() => {
-                shootingStar.remove();
-            }, 2000);
+            // Überwachen Änderungen an DOM-Elementen
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' || mutation.type === 'childList') {
+                        const modal = document.getElementById('tosModal');
+                        if (modal && modal.style.display === 'none') {
+                            checkSecurityViolation();
+                        }
+                    }
+                });
+            });
+            
+            // Starte Überwachung
+            observer.observe(document.body, { 
+                attributes: true, 
+                childList: true, 
+                subtree: true 
+            });
+        })();
+        
+        // 2. Sicherheits-Token System
+        let securityToken = null;
+        let securityChecks = 0;
+        const maxSecurityChecks = 100;
+        let tosAccepted = false; // Flag ob TOS akzeptiert wurde
+        
+        function generateSecurityToken() {
+            const timestamp = Date.now();
+            const random = Math.random().toString(36).substr(2, 16);
+            securityToken = btoa(`${timestamp}:${random}:${navigator.userAgent}`);
+            return securityToken;
         }
-
-        document.addEventListener('click', (e) => {
-            createClickShootingStar();
-        });
-
-        // Discord Widget API aufrufen
-        async function loadDiscordStats() {
+        
+        function validateSecurityToken(token) {
+            if (!token) return false;
             try {
-                const response = await fetch('https://discord.com/api/v10/invites/2EA5YJKXqy?with_counts=true');
-                const data = await response.json();
+                const decoded = atob(token);
+                const parts = decoded.split(':');
+                if (parts.length !== 3) return false;
                 
-                const memberCount = data.approximate_member_count;
+                const timestamp = parseInt(parts[0]);
+                const now = Date.now();
                 
-                document.getElementById('memberCount').textContent = memberCount.toLocaleString('de-DE');
-                document.getElementById('memberCount').classList.remove('loading');
-            } catch (error) {
-                console.error('Fehler beim Laden der Discord-Statistiken:', error);
-                document.getElementById('memberCount').textContent = '150+';
-                document.getElementById('memberCount').classList.remove('loading');
+                // Token muss innerhalb der letzten 5 Sekunden erstellt worden sein
+                if (now - timestamp > 5000) return false;
+                
+                return true;
+            } catch (e) {
+                return false;
             }
         }
-
-        // Countdown Funktion
-        function updateCountdown() {
-            const releaseDate = new Date('2026-01-16T00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = releaseDate - now;
-
-            if (distance < 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                document.querySelector('.countdown-title').textContent = 'Server ist live!';
+        
+        // 3. Page Block Funktion (NUR BIS ZUM NEULADEN)
+        function blockPage() {
+            // Speichere blockPage als globale Funktion, bevor wir das DOM ersetzen
+            window._blockPageReload = function() {
+                // Lösche ALLE SessionStorage-Einträge für diese Seite
+                sessionStorage.removeItem('tos_blocked');
+                sessionStorage.removeItem('tos_block_reason');
+                sessionStorage.removeItem('tos_block_time');
+                sessionStorage.removeItem('tos_declined');
+                sessionStorage.removeItem('tos_decline_time');
+                sessionStorage.removeItem('tos_accepted');
+                sessionStorage.removeItem('tos_validated');
+                sessionStorage.removeItem('tos_token');
+                sessionStorage.removeItem('tos_accept_time');
+                
+                // Lösche auch LOCALSTORAGE
+                localStorage.removeItem('tos_accepted');
+                localStorage.removeItem('tos_validated');
+                localStorage.removeItem('tos_token');
+                localStorage.removeItem('tos_accept_time');
+                
+                window.location.reload();
+            };
+            
+            window._blockPageLeave = function() {
+                window.location.href = 'about:blank';
+            };
+            
+            document.body.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: black;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    z-index: 1000000;
+                    font-family: 'Orbitron', sans-serif;
+                    text-align: center;
+                    padding: 20px;
+                ">
+                    <h1 style="color: #ff0000; text-shadow: 0 0 20px #ff0000;">⚠️ VERSTOSS GEGEN NUTZUNGSBEDINGUNGEN</h1>
+                    <p>Es wurde versucht, die Nutzungsbedingungen zu umgehen.</p>
+                    <p style="color: #4a90e2; margin-top: 15px;">
+                        <strong>Die Webseite ist bis zum Neuladen gesperrt.</strong>
+                    </p>
+                    <p>Laden Sie die Seite neu, um erneut die Nutzungsbedingungen anzusehen.</p>
+                    <p style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
+                        Code: TOS-BLOCK-${Date.now().toString(36).toUpperCase()}
+                    </p>
+                    <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                        <button onclick="window._blockPageReload()" 
+                                style="padding: 10px 20px; background: #4a90e2; color: white; border: none; cursor: pointer; font-family: 'Orbitron', sans-serif; border-radius: 5px; min-width: 150px;">
+                            🔄 Seite neu laden
+                        </button>
+                        <button onclick="window._blockPageLeave()" 
+                                style="padding: 10px 20px; background: #ff0000; color: white; border: none; cursor: pointer; font-family: 'Orbitron', sans-serif; border-radius: 5px; min-width: 150px;">
+                            ❌ Seite verlassen
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Verhindere weitere Interaktion (außer den Buttons)
+            document.body.style.pointerEvents = 'auto';
+            
+            // Setze Blockade in SessionStorage
+            sessionStorage.setItem('tos_blocked', 'true');
+            sessionStorage.setItem('tos_block_reason', 'Manipulation detected');
+            sessionStorage.setItem('tos_block_time', Date.now().toString());
+        }
+        
+        // 4. Sicherheitsüberprüfungen - NUR wenn TOS nicht akzeptiert
+        function checkSecurityViolation() {
+            // Wenn TOS bereits akzeptiert, keine weiteren Checks
+            if (tosAccepted) {
                 return;
             }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            
+            securityChecks++;
+            
+            if (securityChecks > maxSecurityChecks) {
+                blockPage();
+                return;
+            }
+            
+            const modal = document.getElementById('tosModal');
+            const content = document.getElementById('mainContent');
+            
+            // Überprüfe SessionStorage auf Blockade
+            if (sessionStorage.getItem('tos_blocked') === 'true') {
+                blockPage();
+                return;
+            }
+            
+            // Überprüfe ob TOS bereits akzeptiert wurde (nur für diese Session)
+            const sessionTosAccepted = sessionStorage.getItem('tos_accepted') === 'true';
+            const sessionSecurityValidated = sessionStorage.getItem('tos_validated') === 'true';
+            
+            if (sessionTosAccepted && sessionSecurityValidated) {
+                tosAccepted = true; // Setze Flag, dass TOS akzeptiert
+                return;
+            }
+            
+            // Überprüfe Modal Sichtbarkeit
+            const modalVisible = modal && 
+                modal.style.display !== 'none' && 
+                modal.style.visibility !== 'hidden' &&
+                modal.style.opacity !== '0' &&
+                !modal.classList.contains('hidden');
+            
+            // Wenn Modal nicht sichtbar ist (weil es manipuliert wurde)
+            if (!modalVisible && !sessionTosAccepted) {
+                setTimeout(() => {
+                    blockPage();
+                }, 100);
+                return;
+            }
+            
+            // Überprüfe auf DOM Manipulation
+            if (modal && modal.parentNode !== document.body) {
+                blockPage();
+                return;
+            }
+            
+            // Überprüfe auf Style Manipulation
+            const computedStyle = window.getComputedStyle(modal);
+            if (computedStyle.display === 'none' && !sessionTosAccepted) {
+                blockPage();
+                return;
+            }
         }
-
-        // Responsive Sterne bei Größenänderung
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
+        
+        // 5. Haupt-Funktionalität der Website
+        function initializeWebsiteFunctions() {
+            console.log("Initialisiere Website-Funktionen...");
+            
+            // Sterne generieren
+            function createStars() {
                 const starField = document.getElementById('starField');
-                starField.innerHTML = '';
-                createStars();
-            }, 250);
-        });
+                const numberOfStars = window.innerWidth < 768 ? 50 : 100;
+                
+                for (let i = 0; i < numberOfStars; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.width = (Math.random() * 2 + 1) + 'px';
+                    star.style.height = star.style.width;
+                    starField.appendChild(star);
+                }
 
-        // Statistiken beim Laden der Seite abrufen
-        createStars();
-        loadDiscordStats();
+                // Sternschnuppen hinzufügen
+                for (let i = 0; i < 3; i++) {
+                    const shootingStar = document.createElement('div');
+                    shootingStar.className = 'shooting-star';
+                    starField.appendChild(shootingStar);
+                }
+            }
+
+            // Sternschnuppe beim Klick erstellen
+            function createClickShootingStar() {
+                const starField = document.getElementById('starField');
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star click-star';
+                
+                const startX = Math.random() * 30;
+                const startY = Math.random() * 30;
+                
+                shootingStar.style.left = startX + '%';
+                shootingStar.style.top = startY + '%';
+                shootingStar.style.animationDelay = '0s';
+                starField.appendChild(shootingStar);
+
+                setTimeout(() => {
+                    shootingStar.remove();
+                }, 2000);
+            }
+
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.modal')) return; // Nicht innerhalb des Modals
+                createClickShootingStar();
+            });
+
+            // Discord Widget API aufrufen
+            async function loadDiscordStats() {
+                try {
+                    const response = await fetch('https://discord.com/api/v10/invites/2EA5YJKXqy?with_counts=true');
+                    const data = await response.json();
+                    
+                    const memberCount = data.approximate_member_count;
+                    
+                    document.getElementById('memberCount').textContent = memberCount.toLocaleString('de-DE');
+                    document.getElementById('memberCount').classList.remove('loading');
+                } catch (error) {
+                    console.error('Fehler beim Laden der Discord-Statistiken:', error);
+                    document.getElementById('memberCount').textContent = '150+';
+                    document.getElementById('memberCount').classList.remove('loading');
+                }
+            }
+
+            // Countdown Funktion
+            function updateCountdown() {
+                const releaseDate = new Date('2026-01-16T00:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = releaseDate - now;
+
+                if (distance < 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    document.querySelector('.countdown-title').textContent = 'Server ist live!';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            // Responsive Sterne bei Größenänderung
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    const starField = document.getElementById('starField');
+                    starField.innerHTML = '';
+                    createStars();
+                }, 250);
+            });
+
+            // Funktionen starten
+            createStars();
+            loadDiscordStats();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            setInterval(loadDiscordStats, 300000);
+        }
         
-        // Countdown starten
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        // 6. TOS Haupt-Funktionalität
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM geladen, starte TOS-Prüfung...");
+            
+            // Prüfe SessionStorage auf Blockade
+            if (sessionStorage.getItem('tos_blocked') === 'true') {
+                console.log("Blockade erkannt, blockiere Seite...");
+                blockPage();
+                return;
+            }
+            
+            // WICHTIG: Lösche alle vorherigen localStorage TOS-Akzeptierungen
+            localStorage.removeItem('tos_accepted');
+            localStorage.removeItem('tos_validated');
+            localStorage.removeItem('tos_token');
+            localStorage.removeItem('tos_accept_time');
+            
+            // Elemente
+            const tosModal = document.getElementById('tosModal');
+            const mainContent = document.getElementById('mainContent');
+            const acceptButton = document.getElementById('acceptButton');
+            const declineButton = document.getElementById('declineButton');
+            const closeButton = document.getElementById('closeButton');
+            
+            // Prüfe ob TOS bereits in dieser Session akzeptiert wurde
+            const sessionTosAccepted = sessionStorage.getItem('tos_accepted') === 'true';
+            const sessionSecurityValidated = sessionStorage.getItem('tos_validated') === 'true';
+            
+            console.log("TOS akzeptiert?", sessionTosAccepted);
+            console.log("Security validiert?", sessionSecurityValidated);
+            
+            if (sessionTosAccepted && sessionSecurityValidated) {
+                console.log("TOS bereits akzeptiert, zeige Website an...");
+                tosAccepted = true; // Setze Flag
+                tosModal.setAttribute('data-hidden', 'true');
+                mainContent.setAttribute('data-visible', 'true');
+                initializeWebsiteFunctions();
+                return;
+            }
+            
+            // Generiere Initial-Token
+            generateSecurityToken();
+            
+            // Starte regelmäßige Sicherheitschecks
+            const securityCheckInterval = setInterval(checkSecurityViolation, 1000);
+            
+            // Akzeptieren Handler
+            window.handleAccept = function() {
+                console.log("TOS akzeptiert...");
+                
+                // Generiere neuen Token
+                const token = generateSecurityToken();
+                
+                // Setze TOS-Akzeptierung in SessionStorage
+                sessionStorage.setItem('tos_accepted', 'true');
+                sessionStorage.setItem('tos_validated', 'true');
+                sessionStorage.setItem('tos_token', token);
+                sessionStorage.setItem('tos_accept_time', Date.now().toString());
+                
+                // Setze globale Flag
+                tosAccepted = true;
+                
+                // Stoppe Sicherheitschecks
+                clearInterval(securityCheckInterval);
+                
+                // Validierung
+                if (!validateSecurityToken(token)) {
+                    console.log("Token-Validierung fehlgeschlagen!");
+                    blockPage();
+                    return;
+                }
+                
+                console.log("Token validiert, verstecke Modal...");
+                
+                // Modal ausblenden mit Zeitverzögerung und Animation
+                tosModal.style.transition = 'opacity 0.5s ease';
+                tosModal.style.opacity = '0';
+                
+                setTimeout(() => {
+                    tosModal.setAttribute('data-hidden', 'true');
+                    
+                    // Content mit Verzögerung anzeigen
+                    setTimeout(() => {
+                        console.log("Zeige Website-Inhalt an...");
+                        mainContent.setAttribute('data-visible', 'true');
+                        
+                        // Website-Funktionen initialisieren
+                        initializeWebsiteFunctions();
+                    }, 300);
+                }, 500);
+            };
+            
+            // Ablehnen Handler
+            function handleDecline() {
+                console.log("TOS abgelehnt...");
+                
+                // Setze SessionStorage für Ablehnung
+                sessionStorage.setItem('tos_declined', 'true');
+                sessionStorage.setItem('tos_decline_time', Date.now().toString());
+                
+                // Stoppe Sicherheitschecks
+                clearInterval(securityCheckInterval);
+                
+                // Mehrere Redirect-Versuche
+                let redirectAttempts = 0;
+                
+                function tryRedirect() {
+                    redirectAttempts++;
+                    
+                    if (redirectAttempts === 1) {
+                        // Versuch 1: History back
+                        if (window.history.length > 1) {
+                            window.history.go(-1);
+                        }
+                    } else if (redirectAttempts === 2) {
+                        // Versuch 2: about:blank
+                        try {
+                            window.location.replace('about:blank');
+                        } catch(e) {
+                            // Weiter zu Versuch 3
+                        }
+                    } else if (redirectAttempts === 3) {
+                        // Versuch 3: Block-Seite anzeigen
+                        blockPage();
+                        return;
+                    }
+                    
+                    // Nächsten Versuch nach 100ms
+                    if (redirectAttempts < 3) {
+                        setTimeout(tryRedirect, 100);
+                    }
+                }
+                
+                tryRedirect();
+            }
+            
+            // Event Listener für Decline und Close
+            declineButton.addEventListener('click', handleDecline);
+            closeButton.addEventListener('click', handleDecline);
+            
+            // Verhindere Rechtsklick und Textauswahl im Modal
+            tosModal.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                if (!tosAccepted) {
+                    checkSecurityViolation();
+                }
+                return false;
+            });
+            
+            // Verhindere Tastatur-Shortcuts für DevTools
+            document.addEventListener('keydown', function(e) {
+                // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+                if (e.keyCode === 123 || 
+                    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+                    (e.ctrlKey && e.keyCode === 85)) {
+                    e.preventDefault();
+                    if (!tosAccepted) {
+                        checkSecurityViolation();
+                    }
+                    return false;
+                }
+            });
+            
+            // Verhindere Links, solange TOS nicht akzeptiert
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('a') && !tosAccepted) {
+                    e.preventDefault();
+                    checkSecurityViolation();
+                }
+            });
+            
+            // Initiale Überprüfung
+            checkSecurityViolation();
+        });
         
-        // Optional: Statistiken alle 5 Minuten aktualisieren
-        setInterval(loadDiscordStats, 300000);
+        // 7. Finaler Schutz vor Script-Entfernung
+        Object.freeze(window.handleAccept);
+        Object.freeze(checkSecurityViolation);
+        Object.freeze(blockPage);
+        
+        // Selbstschutz des Scripts (nur wenn TOS nicht akzeptiert)
+        setTimeout(function() {
+            try {
+                if (!tosAccepted) {
+                    const scriptProtection = `
+                        if (typeof handleAccept === 'undefined') {
+                            sessionStorage.setItem('tos_blocked', 'true');
+                            window.location.reload();
+                        }
+                        const modal = document.getElementById('tosModal');
+                        if (modal && modal.style.display === 'none' && 
+                            !sessionStorage.getItem('tos_accepted')) {
+                            sessionStorage.setItem('tos_blocked', 'true');
+                            window.location.reload();
+                        }
+                    `;
+                    eval(scriptProtection);
+                }
+            } catch(e) {
+                // Ignoriere Fehler
+            }
+        }, 2000);
+        
     </script>
 </body>
 </html>
