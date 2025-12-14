@@ -6,10 +6,10 @@
     <title>Alliance Network - Informationen</title>
     <link rel="icon" href="icon.png" type="image/png">
     
-    <meta name="description" content="Informationen über Alliance Network - Serverregelwerk, Impressum, Verwaltungsteam und Feedback">
+    <meta name="description" content="Informationen über Alliance Network - Serverregelwerk, Impressum und Verwaltungsteam">
     
     <meta property="og:title" content="Alliance Network - Informationen">
-    <meta property="og:description" content="Serverregelwerk, Impressum, Verwaltungsteam und Feedback">
+    <meta property="og:description" content="Serverregelwerk, Impressum und Verwaltungsteam">
     <meta property="og:image" content="https://eastgermancrusader.github.io/Alliance-Network/icon.png">
     <meta property="og:url" content="https://alliance-network.de">
     <meta property="og:type" content="website">
@@ -259,87 +259,6 @@
             border-bottom: none;
         }
 
-        /* Feedback Form */
-        .feedback-form {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            color: #4a90e2;
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 15px;
-            background: rgba(10, 14, 39, 0.8);
-            border: 2px solid #4a90e2;
-            border-radius: 8px;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #5fa3f0;
-            box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #4a90e2, #357abd);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .submit-button:hover {
-            background: linear-gradient(135deg, #357abd, #2a5f9a);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
-        }
-
-        .success-message {
-            background: rgba(46, 204, 113, 0.2);
-            border: 2px solid #2ecc71;
-            color: #2ecc71;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -382,7 +301,6 @@
     </style>
 </head>
 <body>
-    <!-- Sternenfeld -->
     <div id="starField"></div>
 
     <script>
@@ -474,9 +392,60 @@
                 }
             }
         });
+
+        function openTab(tabId) {
+            // Alle Tab-Inhalte ausblenden
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+
+            // Alle Buttons deaktivieren
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+
+            // Den ausgewählten Tab-Inhalt anzeigen und den Button aktivieren
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Standardmäßig den ersten Tab beim Laden anzeigen
+        window.onload = function() {
+             if (pageAccessGranted) {
+                const firstTabButton = document.querySelector('.tab-navigation .tab-button');
+                const firstTabContent = document.querySelector('.tab-content');
+
+                if (firstTabButton && firstTabContent) {
+                    firstTabButton.classList.add('active');
+                    firstTabContent.classList.add('active');
+                }
+            }
+        };
+
+        // Sternenfeld-Skript
+        function createStarField() {
+            const starField = document.getElementById('starField');
+            const numStars = 200;
+            const sizeRange = [1, 3]; 
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = star.style.height = `${Math.floor(Math.random() * (sizeRange[1] - sizeRange[0] + 1)) + sizeRange[0]}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 3}s`; // Zufällige Verzögerung
+                starField.appendChild(star);
+            }
+        }
+
+        if (pageAccessGranted) {
+            createStarField();
+        }
     </script>
 
-    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo">ALLIANCE NETWORK</div>
@@ -484,18 +453,14 @@
         </div>
     </header>
 
-    <!-- Main Container -->
     <div class="container">
-        <!-- Tab Navigation -->
         <div class="tab-navigation">
-            <button class="tab-button active" onclick="openTab('regelwerk')">Serverregelwerk</button>
+            <button class="tab-button" onclick="openTab('regelwerk')">Serverregelwerk</button>
             <button class="tab-button" onclick="openTab('fraktionen')">Fraktionen</button>
             <button class="tab-button" onclick="openTab('verwaltung')">Verwaltung</button>
             <button class="tab-button" onclick="openTab('impressum')">Impressum</button>
-            <button class="tab-button" onclick="openTab('feedback')">Feedback</button>
         </div>
 
-        <!-- Tab: Serverregelwerk -->
         <div id="regelwerk" class="tab-content active">
             <div class="content-card">
                 <h1>📜 Regelwerk – Star Wars CWRP</h1>
@@ -644,7 +609,6 @@
             </div>
         </div>
 
-        <!-- Tab: Fraktionen -->
         <div id="fraktionen" class="tab-content">
             <div class="content-card">
                 <h1>⚔️ Spielbare Fraktionen</h1>
@@ -652,7 +616,6 @@
                     Wähle deine Fraktion und werde Teil der Großen Armee der Republik!
                 </p>
 
-                <!-- Republic Navy -->
                 <div style="margin-bottom: 50px;">
                     <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px;">🚀 Republic Navy</h2>
                     <p style="text-align: center; margin-bottom: 30px; color: #b0c4de; line-height: 1.8;">
@@ -661,7 +624,6 @@
                     </p>
 
                     <div class="admin-grid">
-                        <!-- Navy Haupteinheit -->
                         <div class="admin-card" style="grid-column: span 2;">
                             <h3>⚓ Republic Navy - Fleet Crew</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -670,7 +632,6 @@
                             </p>
                         </div>
 
-                        <!-- Techniker -->
                         <div class="admin-card">
                             <h3>🔧 Naval Engineering Department</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -679,7 +640,6 @@
                             </p>
                         </div>
 
-                        <!-- Mediziner -->
                         <div class="admin-card">
                             <h3>⚕️ Naval Medical Department</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -688,7 +648,6 @@
                             </p>
                         </div>
 
-                        <!-- Flottensicherheit -->
                         <div class="admin-card">
                             <h3>🛡️ Naval Security Department</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -697,7 +656,6 @@
                             </p>
                         </div>
 
-                        <!-- AVP -->
                         <div class="admin-card">
                             <h3>✈️ Armored Vehicle Platoon</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -707,7 +665,6 @@
                     </div>
                 </div>
 
-                <!-- 41st Elite Corps -->
                 <div>
                     <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px;">🌿 41st Elite Corps</h2>
                     <p style="text-align: center; margin-bottom: 30px; color: #b0c4de; line-height: 1.8;">
@@ -716,7 +673,6 @@
                     </p>
 
                     <div class="admin-grid">
-                        <!-- 41st Haupteinheit -->
                         <div class="admin-card" style="grid-column: span 2;">
                             <h3>🎖️ 41st Elite Corps - Haupteinheit</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -725,7 +681,6 @@
                             </p>
                         </div>
 
-                        <!-- Medics -->
                         <div class="admin-card">
                             <h3>🏥 Medics</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -734,7 +689,6 @@
                             </p>
                         </div>
 
-                        <!-- Pioniere -->
                         <div class="admin-card">
                             <h3>⚒️ Pioniere</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -743,7 +697,6 @@
                             </p>
                         </div>
 
-                        <!-- Schwere Infanterie -->
                         <div class="admin-card">
                             <h3>💥 Schwere Infanterie</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -752,7 +705,6 @@
                             </p>
                         </div>
 
-                        <!-- Leichte Infanterie -->
                         <div class="admin-card">
                             <h3>🏃 Leichte Infanterie</h3>
                             <p style="color: #b0c4de; margin-top: 10px; line-height: 1.6;">
@@ -817,13 +769,7 @@
                         </ul>
                     </div>
 
-                    <!-- Discord Verwaltung -->
-                    <div class="admin-card">
-                        <h3>💬 Discord Verwaltung</h3>
-                        <ul class="admin-list">
-                            <li>n/a</li>
-                        </ul>
-                    </div>
+                    
                 </div>
 
                 <p style="margin-top: 40px; text-align: center; color: #b0c4de; line-height: 1.8;">
@@ -853,257 +799,12 @@
                     <strong>Discord:</strong> <a href="https://discord.gg/2EA5YJKXqy" style="color: #4a90e2;">discord.gg/2EA5YJKXqy</a>
                 </p>
 
-                <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-                <p>
-                    Luis Weider<br>
-                    Straße der Deutschen Einheit 37<br>
-                    39326 Wolmirstedt
-                </p>
-
-                <h2>Haftungsausschluss</h2>
                 
-                <h3>Haftung für Inhalte</h3>
-                <p>
-                    Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. 
-                    Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen 
-                    oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
-                </p>
-
-                <h3>Haftung für Links</h3>
-                <p>
-                    Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte 
-                    auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
-                </p>
-
-                <h3>Urheberrecht</h3>
-                <p>
-                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
-                    Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen
-                    der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. 
-                    Abweichend davon räumt der Nutzer den Seitenbetreibern und allen anderen Nutzern mit dem Posten von Inhalten (wie Texten oder Bildern)
-                    auf diesen Diensten ein nicht-exklusives Nutzungsrecht ein, das diese insbesondere dazu berechtigt,
-                    die Inhalte im Rahmen des Dienstes herunterzuladen, weiterzuleiten und zu vervielfältigen.
-                </p>
-
-                <h2>Datenschutz</h2>
-                <p>
-                    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten 
-                    (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. 
-                    Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
-                </p>
-
-                <h2>Rechtliche Hinweise</h2>
-                <p>
-                    Alliance Network ist ein privates, nicht-kommerzielles Projekt und steht in keiner offiziellen Verbindung zu Lucasfilm, Disney oder anderen 
-                    Rechteinhabern von Star Wars. Alle Star Wars-bezogenen Marken und Urheberrechte gehören ihren jeweiligen Eigentümern.
-                </p>
 
                 <p style="margin-top: 30px; color: #b0c4de; font-size: 0.9rem;">
-                    Stand: 13.12.2025
+                    Stand: 14.12.2025
                 </p>
             </div>
         </div>
-
-        <!-- Tab: Feedback -->
-        <div id="feedback" class="tab-content">
-            <div class="content-card">
-                <h1>📝 Feedback</h1>
-                <p style="text-align: center; margin-bottom: 40px;">
-                    Deine Meinung ist uns wichtig! Teile uns dein Feedback, Vorschläge oder Probleme mit.
-                </p>
-
-                <form class="feedback-form" id="feedbackForm">
-                    <div class="form-group">
-                        <label for="name">Name (optional)</label>
-                        <input type="text" id="name" name="name" placeholder="Dein Name oder Ingame-Name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">E-Mail (optional)</label>
-                        <input type="email" id="email" name="email" placeholder="deine@email.de">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Kategorie *</label>
-                        <select id="category" name="kategorie" required>
-                            <option value="">Bitte wählen...</option>
-                            <option value="Bug-Report">🐛 Bug-Report</option>
-                            <option value="Vorschlag">💡 Vorschlag</option>
-                            <option value="Beschwerde">⚠️ Beschwerde</option>
-                            <option value="Lob">⭐ Lob</option>
-                            <option value="Frage">❓ Frage</option>
-                            <option value="Sonstiges">📌 Sonstiges</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="subject">Betreff *</label>
-                        <input type="text" id="subject" name="betreff" placeholder="Worum geht es?" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Nachricht *</label>
-                        <textarea id="message" name="nachricht" placeholder="Beschreibe dein Anliegen so detailliert wie möglich..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-button" id="submitBtn">Feedback absenden</button>
-                </form>
-
-                <div class="success-message" id="successMessage">
-                    ✅ Vielen Dank für dein Feedback! Wir werden uns schnellstmöglich darum kümmern.
-                </div>
-
-                <div class="success-message" id="errorMessage" style="background: rgba(231, 76, 60, 0.2); border-color: #e74c3c; color: #e74c3c;">
-                    ❌ <span id="errorText">Beim Versenden ist ein Fehler aufgetreten. Bitte versuche es später erneut.</span>
-                </div>
-
-                <p style="text-align: center; margin-top: 30px; color: #b0c4de; font-size: 0.9rem;">
-                    📧 Dein Feedback wird automatisch an unser Team gesendet: <strong style="color: #4a90e2;">info@alliance-network.de</strong>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Sternenfeld erstellen
-        function createStars() {
-            const starField = document.getElementById('starField');
-            const numberOfStars = 200;
-
-            for (let i = 0; i < numberOfStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const size = Math.random() * 3;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                
-                starField.appendChild(star);
-            }
-        }
-
-        // Tab-Funktion
-        function openTab(tabName) {
-            // Alle Tab-Contents ausblenden
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
-
-            // Alle Tab-Buttons deaktivieren
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            // Gewählten Tab anzeigen
-            document.getElementById(tabName).classList.add('active');
-            
-            // Gewählten Button aktivieren
-            event.target.classList.add('active');
-
-            // Scroll nach oben
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Feedback-Formular mit AJAX
-        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('submitBtn');
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            const errorText = document.getElementById('errorText');
-
-            // Button während des Sendens deaktivieren
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Wird gesendet...';
-            submitBtn.style.opacity = '0.6';
-
-            // Nachrichten ausblenden
-            successMessage.classList.remove('show');
-            errorMessage.classList.remove('show');
-
-            // Formulardaten sammeln
-            const formData = new FormData(this);
-
-            // AJAX-Request an PHP-Script
-            fetch('feedback.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Button wieder aktivieren
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Feedback absenden';
-                submitBtn.style.opacity = '1';
-
-                if (data.success) {
-                    // Erfolg
-                    successMessage.classList.add('show');
-                    this.reset();
-
-                    // Erfolgsmeldung nach 5 Sekunden ausblenden
-                    setTimeout(() => {
-                        successMessage.classList.remove('show');
-                    }, 5000);
-
-                    // Scroll zur Erfolgsmeldung
-                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    // Fehler
-                    errorText.textContent = data.message || 'Beim Versenden ist ein Fehler aufgetreten.';
-                    errorMessage.classList.add('show');
-
-                    // Fehlermeldung nach 7 Sekunden ausblenden
-                    setTimeout(() => {
-                        errorMessage.classList.remove('show');
-                    }, 7000);
-
-                    // Scroll zur Fehlermeldung
-                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            })
-            .catch(error => {
-                console.error('Fehler:', error);
-                
-                // Button wieder aktivieren
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Feedback absenden';
-                submitBtn.style.opacity = '1';
-
-                // Fehlermeldung anzeigen
-                errorText.textContent = 'Verbindungsfehler. Bitte überprüfe deine Internetverbindung.';
-                errorMessage.classList.add('show');
-
-                setTimeout(() => {
-                    errorMessage.classList.remove('show');
-                }, 7000);
-
-                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-        });
-
-        // Responsive Sterne bei Größenänderung
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                const starField = document.getElementById('starField');
-                starField.innerHTML = '';
-                createStars();
-            }, 250);
-        });
-
-        // Initialisierung
-        createStars();
-    </script>
 </body>
 </html>
