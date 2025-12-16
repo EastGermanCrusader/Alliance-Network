@@ -298,6 +298,51 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(26, 31, 58, 0.95));
+            padding: 40px 20px;
+            border-top: 2px solid #4a90e2;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: #4a90e2;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #b0c4de;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #4a90e2;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(74, 144, 226, 0.3);
+            color: #b0c4de;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -455,11 +500,10 @@
 
     <div class="container">
         <div class="tab-navigation">
-            <button class="tab-button" onclick="openTab('regelwerk')">Serverregelwerk</button>
-            <button class="tab-button" onclick="openTab('fraktionen')">Fraktionen</button>
-            <button class="tab-button" onclick="openTab('verwaltung')">Verwaltung</button>
-            <button class="tab-button" onclick="openTab('impressum')">Impressum</button>
-        </div>
+            <button class="tab-button" onclick="openTab('regelwerk')">Serverregelwerk</button>
+            <button class="tab-button" onclick="openTab('fraktionen')">Fraktionen</button>
+            <button class="tab-button" onclick="openTab('verwaltung')">Verwaltung</button>
+        </div>
 
         <div id="regelwerk" class="tab-content active">
             <div class="content-card">
@@ -779,32 +823,104 @@
             </div>
         </div>
 
-        <!-- Tab: Impressum -->
-        <div id="impressum" class="tab-content">
-            <div class="content-card">
-                <h1>ℹ️ Impressum</h1>
+        
+             
+    </div>
 
-                <h2>Angaben gemäß § 5 TMG</h2>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Alliance Network</h3>
+                <p>
+                    Dein Star Wars Clone Wars RP Server.<br>
+                    Erlebe epische Schlachten und authentisches Roleplay in der Welt der Klonkriege.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Schnelllinks</h3>
+                <p>
+                    <a href="https://discord.gg/2EA5YJKXqy" target="_blank">Discord Server</a><br>
+                    <a href="index.html">Startseite</a><br>
+                    <a href="#impressum">Impressum</a>
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Impressum</h3>
                 <p>
                     <strong>Alliance Network</strong><br>
                     Luis Weider<br>
                     Straße der Deutschen Einheit 37<br>
                     39326 Wolmirstedt<br>
-                    Deutschland
-                </p>
-
-                <h2>Kontakt</h2>
-                <p>
-                    <strong>E-Mail:</strong> info@alliance-network.de<br>
-                    <strong>Discord:</strong> <a href="https://discord.gg/2EA5YJKXqy" style="color: #4a90e2;">discord.gg/2EA5YJKXqy</a>
-                </p>
-
-                
-
-                <p style="margin-top: 30px; color: #b0c4de; font-size: 0.9rem;">
-                    Stand: 14.12.2025
+                    Deutschland<br><br>
+                    <a href="mailto:info@alliance-network.de">info@alliance-network.de</a>
                 </p>
             </div>
         </div>
+        
+        <div class="footer-bottom">
+            
+        </div>
+    </footer>
+
+    <script>
+        // Stern-Hintergrund erstellen
+        function createStars() {
+            const starField = document.getElementById('starField');
+            const starCount = 200;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starField.appendChild(star);
+            }
+        }
+
+        // Tab-Funktionalität
+        function switchTab(tabName) {
+            // Alle Tab-Inhalte verstecken
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Alle Tab-Buttons deaktivieren
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            // Gewählten Tab aktivieren
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // URL-Hash aktualisieren
+            window.location.hash = tabName;
+        }
+
+        // Bei Seitenladung: Prüfe Hash und aktiviere entsprechenden Tab
+        window.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const tabButton = document.querySelector(`[onclick*="${hash}"]`);
+                if (tabButton) {
+                    tabButton.click();
+                } else {
+                    // Fallback: Aktiviere ersten Tab
+                    document.querySelector('.tab-button').click();
+                }
+            } else {
+                // Standardmäßig ersten Tab aktivieren
+                document.querySelector('.tab-button').click();
+            }
+        });
+    </script>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>

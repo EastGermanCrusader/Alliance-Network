@@ -583,6 +583,51 @@
             margin-top: 0.5rem;
         }
 
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(26, 31, 58, 0.95));
+            padding: 40px 20px;
+            border-top: 2px solid #4a90e2;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: #4a90e2;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #b0c4de;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #4a90e2;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(74, 144, 226, 0.3);
+            color: #b0c4de;
+            font-size: 0.9rem;
+        }
+
         .stat-item {
             text-align: center;
             padding: clamp(1rem, 2vw, 1.5rem);
@@ -946,9 +991,47 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Alliance Network</h3>
+                    <p>
+                        Dein Star Wars Clone Wars RP Server.<br>
+                        Erlebe epische Schlachten und authentisches Roleplay in der Welt der Klonkriege.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Schnelllinks</h3>
+                    <p>
+                        <a href="https://discord.gg/2EA5YJKXqy" target="_blank">Discord Server</a><br>
+                        <a href="info.html">Informationen</a><br>
+                        <a href="info.html#impressum">Impressum</a>
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Impressum</h3>
+                    <p>
+                        <strong>Alliance Network</strong><br>
+                        Luis Weider<br>
+                        Straße der Deutschen Einheit 37<br>
+                        39326 Wolmirstedt<br>
+                        Deutschland<br><br>
+                        <a href="mailto:info@alliance-network.de">info@alliance-network.de</a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+               
+            </div>
+        </footer>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ========== ERWEITERTE SICHERHEITSMECHANISMEN ==========
         
         // 1. Anti-Debugging Protection
@@ -1471,13 +1554,15 @@
                             window.location.reload();
                         }
                     `;
-                    eval(scriptProtection);
+                    
+                    const script = document.createElement('script');
+                    script.textContent = scriptProtection;
+                    document.head.appendChild(script);
                 }
             } catch(e) {
-                // Ignoriere Fehler
+                console.error('Protection script error:', e);
             }
-        }, 2000);
-        
+        }, 3000);
     </script>
 </body>
 </html>
